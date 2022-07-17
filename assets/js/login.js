@@ -36,13 +36,12 @@ $(function () {
 
 
     // 提交表单到后台
-    // 后台根路径: http://www.liulongbin.top:3007
     const layer = layui.layer
     // 注册表单
     $('#reg-form').on('submit', function (e) {
         e.preventDefault()
         $.ajax({
-            url: 'http://www.liulongbin.top:3007/api/reguser',
+            url: '/api/reguser',
             method: 'post',
             data: {
                 username: $('#reg-form [name=username]').val(),
@@ -60,13 +59,14 @@ $(function () {
                 $('#link_login').click()
             }
         })
+
     })
 
     // 登录表单
     $('#login-form').on('submit', function (e) {
         e.preventDefault()
         $.ajax({
-            url: 'http://www.liulongbin.top:3007/api/login',
+            url: '/api/login',
             method: 'post',
             data: $(this).serialize(),
             success: function (res) {
@@ -77,7 +77,7 @@ $(function () {
                 layer.msg('登录成功，即将跳转页面!')
 
                 // 将服务器返回的token存到本地
-                localStorage.setItem('token',res.token)
+                localStorage.setItem('token', res.token)
 
                 // 1秒后跳转到 index页面
                 setTimeout(function () {
